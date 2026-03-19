@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>درب الخير - تطبيقك الروحاني الشامل</title>
+    <!-- Font Awesome 6 for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0a2f1f;
+            color: #2d3e2c;
+            line-height: 1.6;
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f9f7f0 0%, #f0ebd8 100%);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .app-header {
+            background: linear-gradient(135deg, #1a4d2a 0%, #2b7a4b 100%);
+            color: #ffd966;
+            padding: 25px 20px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            box-shadow: 0 8px 20px rgba(0, 40, 0, 0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .header-title h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: #ffd966;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-title p {
+            font-size: 1rem;
+            opacity: 0.95;
+            color: #f5e6b8;
+        }
+
+        .streak-badge {
+            background-color: #b48b3a;
+            padding: 12px 18px;
+            border-radius: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #1f2e1f;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 2px solid #ffd966;
+        }
+
+        .streak-badge i {
+            font-size: 1.6rem;
+            color: gold;
+            filter: drop-shadow(0 0 5px gold);
+        }
+
+        .prayer-info-bar {
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 50px;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            margin-top: 10px;
+        }
+
+        .next-prayer {
+            background-color: #e9c46a;
+            color: #1f4f2b;
+            padding: 5px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+        }
+
+        /* Main Content - Scrollable */
+        .main-content {
+            flex: 1;
+            padding: 20px 18px 90px;
+            overflow-y: auto;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 22px 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0, 30, 0, 0.15);
+            border: 1px solid rgba(180, 139, 58, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a4d2a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-right: 6px solid #b48b3a;
+            padding-right: 15px;
+        }
+
+        .card-title i {
+            color: #b48b3a;
+            font-size: 1.8rem;
+        }
+
+        /* Tabs */
+        .main-tabs {
+            display: flex;
+            background-color: #1a4d2a;
+            border-radius: 60px;
+            padding: 6px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .main-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            color: #e9c46a;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .main-tab i {
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .main-tab.active {
+            background-color: #e9c46a;
+            color: #1a4d2a;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Azkar Grid */
+        .azkar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .azkar-category {
+            background: linear-gradient(145deg, #f5f0e0, #e8e0c8);
+            border-radius: 20px;
+            padding: 18px 8px;
+            text-align: center;
+            border: 1px solid #b48b3a;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .azkar-category i {
+            font-size: 2.2rem;
+            color: #1a4d2a;
+            margin-bottom: 8px;
+        }
+
+        .azkar-category span {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .azkar-category.active {
+            background-color: #1a4d2a;
+            color: #ffd966;
+        }
+        .azkar-category.active i { color: #ffd966; }
+
+        .azkar-list {
+            background: #f5f0e0;
+            border-radius: 25px;
+            padding: 18px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .dhikr-item {
+            background: white;
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-right: 5px solid #b48b3a;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .dhikr-count {
+            display: inline-block;
+            background: #1a4d2a;
+            color: #ffd966;
+            padding: 3px 12px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Challenge Counter */
+        .challenge-box {
+            background: linear-gradient(135deg, #2d6a4f, #1f4f2b);
+            border-radius: 40px;
+            padding: 30px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .challenge-title {
+            font-size: 2rem;
+            color: #ffd966;
+            margin-bottom: 10px;
+        }
+
+        .challenge-dhikr {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 60px;
+        }
+
+        .challenge-target {
+            font-size: 1.3rem;
+            margin: 15px 0;
+        }
+
+        .challenge-counter {
+            font-size: 6rem;
+            font-weight: 800;
+            color: #ffd966;
+            line-height: 1;
+            margin: 20px 0;
+            text-shadow: 0 0 20px gold;
+        }
+
+        .challenge-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .challenge-btn {
+            background-color: #b48b3a;
+            border: none;
+            color: #1f2e1f;
+            font-size: 2rem;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 8px 0 #7a5f2b;
+            transition: 0.1s;
+        }
+
+        .challenge-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #7a5f2b;
+        }
+
+        .challenge-action-btn {
+            background-color: #e9c46a;
+            color: #1f4f2b;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b48b3a;
+        }
+
+        /* Quran Section */
+        .qari-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            justify-content: center;
+        }
+
+        .qari-btn {
+            background: #e5d9c0;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 0 0 auto;
+            transition: 0.2s;
+        }
+
+        .qari-btn.active {
+            background: #1a4d2a;
+            color: #ffd966;
+        }
+
+        /* مشغل الصوت المتقدم */
+        .advanced-audio-player {
+            background: linear-gradient(145deg, #1a4d2a, #2b7a4b);
+            border-radius: 60px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .player-info {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffd966;
+        }
+
+        .player-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #ffd966;
+            width: 0%;
+        }
+
+        .time-display {
+            font-size: 0.9rem;
+            color: #e9c46a;
+            min-width: 45px;
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .player-control-btn {
+            background: none;
+            border: none;
+            color: #ffd966;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .player-control-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* قائمة السور */
+        .surah-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f5f0e0;
+            border-radius: 25px;
+        }
+
+        .surah-item {
+            background: white;
+            padding: 12px 5px;
+            text-align: center;
+            border-radius: 50px;
+            border: 2px solid #b48b3a;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .surah-item:hover {
+            background: #1a4d2a;
+            color: #ffd966;
+        }
+
+        .surah-item.active {
+            background: #1a4d2a;
+            color: #ffd966;
+        }
+
+        /* المصحف - عرض السورة كاملة */
+        .mushaf-container {
+            background: #f5f0e0;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 2px solid #b48b3a;
+        }
+
+        .surah-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a4d2a, #2b7a4b);
+            color: #ffd966;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .ayah-container {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            line-height: 3rem;
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 20px;
+            border-right: 8px solid #b48b3a;
+        }
+
+        .ayah-number {
+            display: inline-block;
+            background: #1a4d2a;
+            color: #ffd966;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .back-to-list {
+            background: #b48b3a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* Prayer Times */
+        .city-selector {
+            width: 100%;
+            padding: 12px;
+            border-radius: 40px;
+            border: 2px solid #b48b3a;
+            margin-bottom: 20px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .prayer-times-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .prayer-item {
+            background: #e5d9c0;
+            padding: 15px 5px;
+            border-radius: 22px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .prayer-item.active-prayer {
+            background: #1a4d2a;
+            color: #ffd966;
+            box-shadow: 0 0 15px gold;
+        }
+
+        .prayer-name {
+            font-size: 1.1rem;
+        }
+
+        .prayer-time {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .alert-badge {
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+        /* Compass */
+        .compass-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .compass {
+            width: 180px;
+            height: 180px;
+            border: 8px solid #1a4d2a;
+            border-radius: 50%;
+            position: relative;
+            background: #f0ebd8;
+            margin: 15px 0;
+        }
+
+        .needle {
+            width: 8px;
+            height: 80px;
+            background: #b48b3a;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .needle::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: #b48b3a;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -12px;
+            left: -8px;
+        }
+
+        /* Prayer Tracker */
+        .prayer-tracker-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .prayer-slot {
+            background: #f0ebd8;
+            border-radius: 18px;
+            padding: 10px 3px;
+            text-align: center;
+            border: 1px solid #b48b3a;
+        }
+
+        .prayer-actions {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .prayer-actions button {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .btn-ontime { color: #1a4d2a; }
+        .btn-late { color: #b48b3a; }
+        .btn-missed { color: #a14f4f; }
+
+        /* Toasts */
+        .toast-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            width: 90%;
+            max-width: 400px;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .toast {
+            background: linear-gradient(135deg, #1a4d2a, #2b7a4b);
+            color: #ffd966;
+            padding: 18px 25px;
+            border-radius: 60px;
+            margin-bottom: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-align: center;
+            border-right: 8px solid #ffd966;
+            animation: slideIn 0.3s ease;
+            pointer-events: auto;
+            width: 100%;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Footer */
+        .app-footer {
+            background: #1a4d2a;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 100%;
+            z-index: 100;
+        }
+
+        .footer-item {
+            color: #e9c46a;
+            text-align: center;
+            font-size: 0.8rem;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.2s;
+        }
+
+        .footer-item i {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer-item.active {
+            color: #ffd966;
+            transform: translateY(-5px);
+        }
+
+        /* Utility */
+        .hidden { display: none !important; }
+        .mt-3 { margin-top: 15px; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Toast Container -->
+        <div class="toast-container" id="toastContainer"></div>
+
+        <!-- Header -->
+        <div class="app-header">
+            <div class="header-top">
+                <div class="header-title">
+                    <h1>درب الخير</h1>
+                    <p><i class="fas fa-mosque"></i> رحلتك الروحانية اليومية</p>
+                </div>
+                <div class="streak-badge" id="streakBadge">
+                    <i class="fas fa-fire"></i>
+                    <span id="streakCount">0</span>
+                    <span>يوم</span>
+                </div>
+            </div>
+            <div class="prayer-info-bar" id="prayerInfoBar">
+                <span><i class="fas fa-clock"></i> <span id="currentTime"></span></span>
+                <span class="next-prayer" id="nextPrayerName">الفجر</span>
+                <span id="nextPrayerTime">04:30</span>
+            </div>
+        </div>
+
+        <!-- Main Tabs -->
+        <div class="main-tabs" id="mainTabs">
+            <div class="main-tab active" data-main="home"><i class="fas fa-home"></i>الرئيسية</div>
+            <div class="main-tab" data-main="quran"><i class="fas fa-quran"></i>القرآن</div>
+            <div class="main-tab" data-main="azkar"><i class="fas fa-pray"></i>الأذكار</div>
+            <div class="main-tab" data-main="challenge"><i class="fas fa-star"></i>التحدي</div>
+            <div class="main-tab" data-main="more"><i class="fas fa-bars"></i>المزيد</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- ==================== HOME SECTION ==================== -->
+            <div id="homeSection" class="section active">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-sun"></i> مرحباً بك في درب الخير</div>
+                    <p>استمر في عبادتك، نحن هنا لدعمك في كل خطوة. تذكر أن الله مع الصابرين.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-star"></i> جرعة إيمان سريعة</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div style="background: #f0ebd8; border-radius: 20px; padding: 15px;">
+                            <i class="fas fa-book-open" style="color: #1a4d2a; font-size: 2rem;"></i>
+                            <h4>آية اليوم</h4>
+                            <p id="homeAyah">إِنَّ اللَّهَ مَعَ الصَّابِرِينَ</p>
+                        </div>
+                        <div style="background: #f0ebd8; border-radius: 20px; padding: 15px;">
+                            <i class="fas fa-hadith" style="color: #1a4d2a; font-size: 2rem;"></i>
+                            <h4>حديث اليوم</h4>
+                            <p id="homeHadith">الدين النصيحة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-pray"></i> أذكار اليوم</div>
+                    <div id="quickAzkar">
+                        <div class="dhikr-item">سبحان الله وبحمده <span class="dhikr-count">100</span></div>
+                        <div class="dhikr-item">أستغفر الله العظيم <span class="dhikr-count">70</span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-clock"></i> أوقات الصلاة</div>
+                    <div class="prayer-times-grid" id="homePrayerTimes"></div>
+                </div>
+            </div>
+
+            <!-- ==================== QURAN SECTION ==================== -->
+            <div id="quranSection" class="section">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-quran"></i> القرآن الكريم</div>
+                    
+                    <!-- اختيار القارئ -->
+                    <div class="qari-selector" id="qariSelector">
+                        <button class="qari-btn active" data-qari="abdulbasit">عبدالباسط عبدالصمد</button>
+                        <button class="qari-btn" data-qari="minshawi">محمد صديق المنشاوي</button>
+                        <button class="qari-btn" data-qari="husary">محمود خليل الحصري</button>
+                        <button class="qari-btn" data-qari="sudais">عبدالرحمن السديس</button>
+                        <button class="qari-btn" data-qari="altablawi">محمد الطبلاوي</button>
+                        <button class="qari-btn" data-qari="maher">ماهر المعيقلي</button>
+                    </div>
+
+                    <!-- مشغل الصوت المتقدم -->
+                    <div class="advanced-audio-player" id="advancedAudioPlayer">
+                        <div class="player-info" id="nowPlayingInfo">اختر سورة للاستماع</div>
+                        <div class="player-progress">
+                            <span class="time-display" id="currentTimeDisplay">00:00</span>
+                            <div class="progress-bar" id="progressBar" onclick="seekAudio(event)">
+                                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                            </div>
+                            <span class="time-display" id="durationDisplay">00:00</span>
+                        </div>
+                        <div class="player-controls">
+                            <button class="player-control-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
+                            <button class="player-control-btn" id="stopBtn"><i class="fas fa-stop"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- قائمة السور -->
+                    <h3 style="margin: 15px 0 10px;"><i class="fas fa-list"></i> اختر سورة للاستماع:</h3>
+                    <div class="surah-grid" id="surahGrid">
+                        <!-- سيتم تعبئتها بالجافا سكريبت -->
+                    </div>
+
+                    <!-- المصحف - عرض السورة كاملة -->
+                    <div id="mushafContainer" class="mushaf-container" style="display: none;">
+                        <button class="back-to-list" id="backToListBtn"><i class="fas fa-arrow-right"></i> العودة إلى قائمة السور</button>
+                        <div id="surahContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== AZKAR SECTION ==================== -->
+            <div id="azkarSection" class="section">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-pray"></i> الأذكار والباقيات الصالحات</div>
+                    
+                    <div class="azkar-grid" id="azkarCategories">
+                        <div class="azkar-category active" data-category="morning"><i class="fas fa-sun"></i><span>أذكار الصباح</span></div>
+                        <div class="azkar-category" data-category="evening"><i class="fas fa-moon"></i><span>أذكار المساء</span></div>
+                        <div class="azkar-category" data-category="prayer"><i class="fas fa-praying-hands"></i><span>بعد الصلاة</span></div>
+                        <div class="azkar-category" data-category="sleep"><i class="fas fa-bed"></i><span>أذكار النوم</span></div>
+                        <div class="azkar-category" data-category="wake"><i class="fas fa-sun"></i><span>أذكار الاستيقاظ</span></div>
+                        <div class="azkar-category" data-category="general"><i class="fas fa-heart"></i><span>أذكار عامة</span></div>
+                    </div>
+
+                    <div class="azkar-list" id="azkarListContainer"></div>
+                </div>
+            </div>
+
+            <!-- ==================== CHALLENGE SECTION ==================== -->
+            <div id="challengeSection" class="section">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-trophy"></i> تحدي التسبيح</div>
+                    
+                    <div class="challenge-box">
+                        <div class="challenge-title" id="challengeDhikrName">سبحان الله</div>
+                        <div class="challenge-target" id="challengeTargetText">الهدف: <span id="challengeTarget">33</span> مرة</div>
+                        <div class="challenge-counter" id="challengeCounter">0</div>
+                        
+                        <div class="challenge-buttons">
+                            <button class="challenge-btn" id="challengeIncrement"><i class="fas fa-plus"></i></button>
+                            <button class="challenge-btn" id="challengeDecrement"><i class="fas fa-minus"></i></button>
+                        </div>
+
+                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <button class="challenge-action-btn" id="challengeStartBtn"><i class="fas fa-play"></i> بدأ التسبيح</button>
+                            <button class="challenge-action-btn" id="challengeFinishBtn"><i class="fas fa-check"></i> أنهيت التسبيح</button>
+                            <button class="challenge-action-btn" id="challengeNewBtn"><i class="fas fa-random"></i> تحدي جديد</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <h3><i class="fas fa-users"></i> تحديات جماعية</h3>
+                        <div class="dhikr-item">ختمة القرآن في شهر <span class="dhikr-count">انضم</span></div>
+                        <div class="dhikr-item">الأربعين النووية <span class="dhikr-count">انضم</span></div>
+                        <div class="dhikr-item">صيام الأيام البيض <span class="dhikr-count">انضم</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== MORE SECTION ==================== -->
+            <div id="moreSection" class="section">
+                <!-- Prayer Times Full -->
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-clock"></i> مواقيت الصلاة</div>
+                    <select class="city-selector" id="citySelector">
+                        <option value="cairo">القاهرة</option>
+                        <option value="mecca">مكة المكرمة</option>
+                        <option value="medina">المدينة المنورة</option>
+                        <option value="riyadh">الرياض</option>
+                        <option value="dubai">دبي</option>
+                        <option value="damascus">دمشق</option>
+                    </select>
+                    <div class="prayer-times-grid" id="fullPrayerTimes"></div>
+                </div>
+
+                <!-- Qibla Compass -->
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-compass"></i> بوصلة القبلة</div>
+                    <div class="compass-container">
+                        <div class="compass" id="compass">
+                            <div class="needle" id="needle"></div>
+                        </div>
+                        <div id="qiblaDirection" style="font-weight: bold; margin: 10px 0;">المسجد الحرام</div>
+                        <p class="text-small">قم بتحريك هاتفك لتحديد الاتجاه بدقة</p>
+                    </div>
+                </div>
+
+                <!-- Prayer Tracker -->
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-check-circle"></i> مفكرة الصلوات</div>
+                    <div class="prayer-tracker-grid" id="prayerTrackerFull"></div>
+                </div>
+
+                <!-- Ask Imam -->
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-question-circle"></i> اسأل الإمام</div>
+                    <input type="text" placeholder="اكتب سؤالك..." style="width:100%; padding:15px; border-radius:50px; border:2px solid #b48b3a; margin-bottom:15px;">
+                    <div class="dhikr-item" onclick="showToast('يجوز المسح على الخفين لمدة يوم وليلة للمقيم.')">ما حكم المسح على الخفين؟</div>
+                    <div class="dhikr-item" onclick="showToast('صلاة الضحى سنة مؤكدة، أقلها ركعتان وأكثرها ثمان.')">كم ركعة صلاة الضحى؟</div>
+                    <div class="dhikr-item" onclick="showToast('يجوز الجمع بين الصلاتين للمسافر والمريض.')">متى يجوز الجمع بين الصلاتين؟</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="app-footer" id="footerNav">
+            <div class="footer-item active" data-footer="home"><i class="fas fa-home"></i><span>الرئيسية</span></div>
+            <div class="footer-item" data-footer="quran"><i class="fas fa-quran"></i><span>القرآن</span></div>
+            <div class="footer-item" data-footer="azkar"><i class="fas fa-pray"></i><span>الأذكار</span></div>
+            <div class="footer-item" data-footer="challenge"><i class="fas fa-star"></i><span>التحدي</span></div>
+            <div class="footer-item" data-footer="more"><i class="fas fa-bars"></i><span>المزيد</span></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // --------------------------------------------------------------
+            // 1. المتغيرات العامة والثوابت
+            // --------------------------------------------------------------
+            
+            // دالة إظهار الرسائل (Toast)
+            window.showToast = function(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.style.background = type === 'success' ? 'linear-gradient(135deg, #1a4d2a, #2b7a4b)' : '#a14f4f';
+                toast.innerText = message;
+                container.appendChild(toast);
+                setTimeout(() => { toast.remove(); }, 3500);
+            };
+
+            // عدّاد الأيام المتتالية
+            let streak = localStorage.getItem('myfaith_streak') ? parseInt(localStorage.getItem('myfaith_streak')) : 0;
+            let lastVisit = localStorage.getItem('myfaith_lastvisit') ? new Date(parseInt(localStorage.getItem('myfaith_lastvisit'))) : null;
+            const today = new Date().setHours(0,0,0,0);
+
+            function updateStreak() {
+                if (lastVisit) {
+                    const last = new Date(lastVisit).setHours(0,0,0,0);
+                    const diffDays = Math.round((today - last) / (1000 * 60 * 60 * 24));
+                    if (diffDays === 1) streak++;
+                    else if (diffDays > 1) streak = 1;
+                } else streak = 1;
+                localStorage.setItem('myfaith_streak', streak);
+                localStorage.setItem('myfaith_lastvisit', Date.now());
+                document.getElementById('streakCount').innerText = streak;
+            }
+            updateStreak();
+
+            // --------------------------------------------------------------
+            // 2. قائمة السور الكاملة (114 سورة) - هذا ما سيراه المستخدم
+            // --------------------------------------------------------------
+            const surahList = [
+                "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+                "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه",
+                "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
+                "لقمان", "السجدة", "الأحزاب", "سبإ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر",
+                "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
+                "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
+                "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
+                "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس",
+                "التكوير", "الانفطار", "المطففين", "الانشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
+                "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
+                "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
+                "المسد", "الإخلاص", "الفلق", "الناس"
+            ];
+
+            // --------------------------------------------------------------
+            // 3. روابط السور - هذه المصفوفات ستعبئها أنت بالروابط
+            //    كل مصفوفة تحتوي على 114 رابط (واحد لكل سورة)
+            //    اترك القيم فارغة '' للروابط التي لم تضفها بعد
+            // --------------------------------------------------------------
+            
+            // روابط الشيخ عبد الباسط
+            const abdulbasitLinks = [
+                "https://h.top4top.io/m_3729uz6vy0.mp3", // الفاتحة
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/002.mp3", // البقرة
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/003.mp3", // آل عمران
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/004.mp3", // النساء
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/005.mp3", // المائدة
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/006.mp3", // الأنعام
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/007.mp3", // الأعراف
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/008.mp3", // الأنفال
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/009.mp3", // التوبة
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/010.mp3", // يونس
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/011.mp3", // هود
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/012.mp3", // يوسف
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/013.mp3", // الرعد
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/014.mp3", // إبراهيم
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/015.mp3", // الحجر
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/016.mp3", // النحل
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/017.mp3", // الإسراء
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/018.mp3", // الكهف
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/019.mp3", // مريم
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/020.mp3", // طه
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/021.mp3", // الأنبياء
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/022.mp3", // الحج
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/023.mp3", // المؤمنون
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/024.mp3", // النور
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/025.mp3", // الفرقان
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/026.mp3", // الشعراء
+                "https://download.ourquraan.com/3bdulbasit_Abdulsamad/027.mp3", // النمل
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/028.mp3", // القصص
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/029.mp3", // العنكبوت
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/030.mp3", // الروم
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/031.mp3", // لقمان
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/032.mp3", // السجدة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/033.mp3", // الأحزاب
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/034.mp3", // سبأ
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/035.mp3", // فاطر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/036.mp3", // يس
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/037.mp3", // الصافات
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/038.mp3", // ص
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/039.mp3", // الزمر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/040.mp3", // غافر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/041.mp3", // فصلت
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/042.mp3", // الشورى
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/043.mp3", // الزخرف
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/044.mp3", // الدخان
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/045.mp3", // الجاثية
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/046.mp3", // الأحقاف
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/047.mp3", // محمد
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/048.mp3", // الفتح
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/049.mp3", // الحجرات
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/050.mp3", // ق
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/051.mp3", // الذاريات
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/052.mp3", // الطور
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/053.mp3", // النجم
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/054.mp3", // القمر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/055.mp3", // الرحمن
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/056.mp3", // الواقعة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/057.mp3", // الحديد
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/058.mp3", // المجادلة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/059.mp3", // الحشر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/060.mp3", // الممتحنة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/061.mp3", // الصف
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/062.mp3", // الجمعة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/063.mp3", // المنافقون
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/064.mp3", // التغابن
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/065.mp3", // الطلاق
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/066.mp3", // التحريم
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/067.mp3", // الملك
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/068.mp3", // القلم
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/069.mp3", // الحاقة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/070.mp3", // المعارج
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/071.mp3", // نوح
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/072.mp3", // الجن
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/073.mp3", // المزمل
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/074.mp3", // المدثر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/075.mp3", // القيامة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/076.mp3", // الإنسان
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/077.mp3", // المرسلات
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/078.mp3", // النبأ
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/079.mp3", // النازعات
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/080.mp3", // عبس
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/081.mp3", // التكوير
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/082.mp3", // الانفطار
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/083.mp3", // المطففين
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/084.mp3", // الانشقاق
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/085.mp3", // البروج
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/086.mp3", // الطارق
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/087.mp3", // الأعلى
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/088.mp3", // الغاشية
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/089.mp3", // الفجر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/090.mp3", // البلد
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/091.mp3", // الشمس
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/092.mp3", // الليل
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/093.mp3", // الضحى
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/094.mp3", // الشرح
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/095.mp3", // التين
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/096.mp3", // العلق
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/097.mp3", // القدر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/098.mp3", // البينة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/099.mp3", // الزلزلة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/100.mp3", // العاديات
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/101.mp3", // القارعة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/102.mp3", // التكاثر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/103.mp3", // العصر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/104.mp3", // الهمزة
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/105.mp3", // الفيل
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/106.mp3", // قريش
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/107.mp3", // الماعون
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/108.mp3", // الكوثر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/109.mp3", // الكافرون
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/110.mp3", // النصر
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/111.mp3", // المسد
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/112.mp3", // الإخلاص
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/113.mp3", // الفلق
+"https://download.ourquraan.com/3bdulbasit_Abdulsamad/114.mp3" // الناس
+            ];
+
+            // روابط الشيخ المنشاوي
+            const minshawiLinks = [
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/001.mp3", // الفاتحة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/002.mp3", // البقرة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/003.mp3", // آل عمران
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/004.mp3", // النساء
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/005.mp3", // المائدة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/006.mp3", // الأنعام
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/007.mp3", // الأعراف
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/008.mp3", // الأنفال
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/009.mp3", // التوبة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/010.mp3", // يونس
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/011.mp3", // هود
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/012.mp3", // يوسف
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/013.mp3", // الرعد
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/014.mp3", // إبراهيم
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/015.mp3", // الحجر
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/016.mp3", // النحل
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/017.mp3", // الإسراء
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/018.mp3", // الكهف
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/019.mp3", // مريم
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/020.mp3", // طه
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/021.mp3", // الأنبياء
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/022.mp3", // الحج
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/023.mp3", // المؤمنون
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/024.mp3", // النور
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/025.mp3", // الفرقان
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/026.mp3", // الشعراء
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/027.mp3", // النمل
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/028.mp3", // القصص
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/029.mp3", // العنكبوت
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/030.mp3", // الروم
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/031.mp3", // لقمان
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/032.mp3", // السجدة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/033.mp3", // الأحزاب
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/034.mp3", // سبأ
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/035.mp3", // فاطر
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/036.mp3", // يس
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/037.mp3", // الصافات
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/038.mp3", // ص
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/039.mp3", // الزمر
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/040.mp3", // غافر
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/041.mp3", // فصلت
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/042.mp3", // الشورى
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/043.mp3", // الزخرف
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/044.mp3", // الدخان
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/045.mp3", // الجاثية
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/046.mp3", // الأحقاف
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/047.mp3", // محمد
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/048.mp3", // الفتح
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/049.mp3", // الحجرات
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/050.mp3", // ق
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/051.mp3", // الذاريات
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/052.mp3", // الطور
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/053.mp3", // النجم
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/054.mp3", // القمر
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/055.mp3", // الرحمن
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/056.mp3", // الواقعة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/057.mp3", // الحديد
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/058.mp3", // المجادلة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/059.mp3", // الحشر
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/060.mp3", // الممتحنة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/061.mp3", // الصف
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minshawi/062.mp3", // الجمعة
+"https://download.ourquraan.com/Mohammed_Siddiq_Al-Minsha
